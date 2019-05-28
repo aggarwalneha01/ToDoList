@@ -1,7 +1,6 @@
 import React from 'react'
 
 const Todos = ({todos, deleteTodo, editToDo, isEditing}) => {
-    //const {isEditing} = this.state;
     console.log(isEditing)
     const todoList = todos.length ? (
         todos.map(todo => {
@@ -16,15 +15,6 @@ const Todos = ({todos, deleteTodo, editToDo, isEditing}) => {
                 <button className=" right rcard-panel green lighten-4 " onClick={(e) => { e.preventDefault(); editToDo(todo.id)}}>Edit</button>
                 <button className=" right rcard-panel red lighten-4 " onClick={() => {deleteTodo(todo.id)}}>Del</button>
                 </form> }</section>
-         {/* <form>
-            <input type="text" defaultValue={todo.content}/>
-            <button type="submit">Edit Item</button>
-          </form>
-    
-                <span className="striped highlight">{todo.content}</span>
-                <button className=" right rcard-panel green lighten-4 " onClick={() => {editTodo(todo.id)}}>Edit</button>
-                <button className=" right rcard-panel red lighten-4 " onClick={() => {deleteTodo(todo.id)}}>Del</button>
-         */}
                 </div>
             )
         })

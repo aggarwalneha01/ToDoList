@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Todos from './Todo';
 import AddTodo from './AddTodo';
-//import './App.css';
 
 class App extends Component {
   state = {
@@ -41,7 +40,6 @@ class App extends Component {
     }))
   }
   render() {
-    //const {isEditing} = this.state;
     return (
       <div className="todo-App container">
         <h1 className="center blue-text">Todo List</h1>
