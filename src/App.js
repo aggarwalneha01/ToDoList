@@ -21,7 +21,9 @@ class App extends Component {
     }
 
     editTodo = (id) => {
-      this.setState.isEditing = true;
+        this.setState({
+        isEditing: true
+      });
       console.log(this.state.isEditing);
       const todos  = this.state.todos.filter(todo => {
         return todo.id !== id
@@ -29,15 +31,14 @@ class App extends Component {
       this.setState({
         todos
       })
-      }
+    }
 
 
   addTodo = (todo) => {
     todo.id = Math.random();
-    let todos = [...this.state.todos, todo];
-    this.setState({
-      todos
-    })
+    this.setState(prevState => ({
+      todos: [...prevState.todos, todo]
+    }))
   }
   render() {
     //const {isEditing} = this.state;
@@ -45,7 +46,7 @@ class App extends Component {
       <div className="todo-App container">
         <h1 className="center blue-text">Todo List</h1>
         
-        <Todos todos={this.state.todos} deleteTodo={this.deleteTodo} editToDo={this.editTodo} isEditing={this.state}/>
+        <Todos todos={this.state.todos} deleteTodo={this.deleteTodo} editToDo={this.editTodo} isEditing={this.state.isEditing}/>
         <AddTodo addTodo={this.addTodo}/>
       </div>
     );
