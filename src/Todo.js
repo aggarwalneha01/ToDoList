@@ -1,7 +1,7 @@
 import React from 'react'
 
 const Todos = ({ todos, deleteTodo, editToDo, updateTodo, switchToListMode, isEditing }) => {
-    console.log(isEditing)
+    //console.log(isEditing)
     const todoList = todos.length ? (
         todos.map(todo => {
             return (

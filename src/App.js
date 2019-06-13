@@ -9,42 +9,43 @@ class App extends Component {
   };
 
   componentWillMount(){
-    //console.log("test")
-    //var test = this.state.todos
     var str = localStorage.getItem("todos");
     const todos = str ? JSON.parse(str) : [];
-    console.log(todos);
+    console.log(todos.length);
+    
     this.setState({
       todos
     })
   }
 
-  saveTodo = () => {
-    var todos = this.state.todos;
-    console.log("bbbbbbbbbbbbbbbbbbbbb");
-    var str = JSON.stringify(todos);
-    // localStorage.setItem("todos",str);
-  }
+  // saveTodo = () => {
+  //   var todos = this.state.todos;
+  //   console.log("bbbbbbbbbbbbbbbbbbbbb");
+  //   var str = JSON.stringify(todos);
+  //   // localStorage.setItem("todos",str);
+  // }
 
-  getTodo = () => {
-    var todos = this.state.todos;
-    console.log("aaaaaaaaaaaaaaaaa");
-    var str = localStorage.getItem(todos);
-    todos =JSON.parse(str);
-    if (!todos){
-      todos =[];
-    }
-  }
+  // getTodo = () => {
+  //   var todos = this.state.todos;
+  //   console.log("aaaaaaaaaaaaaaaaa");
+  //   var str = localStorage.getItem(todos);
+  //   todos =JSON.parse(str);
+  //   if (!todos){
+  //     todos =[];
+  //   }
+  // }
 
   //getTodo();
 
-  deleteTodo = id => {
+  deleteTodo = async id => {
     const todos = this.state.todos.filter(todo => {
       return todo.id !== id;
     });
-    this.setState({
+    
+    await this.setState({
       todos
     });
+    localStorage.setItem("todos",JSON.stringify(this.state.todos))
   };
 
   editTodo = id => {
@@ -59,12 +60,13 @@ class App extends Component {
     });
   };
 
-  updateTodo = (idToUpdate, newValue) => {
+  updateTodo = async (idToUpdate, newValue) => {
     const newTodoList = this.state.todos.map(todo => todo.id === idToUpdate ? { id: todo.id, content: newValue } : todo);
-
-    this.setState({
+    
+    await this.setState({
       todos: newTodoList
     });
+    localStorage.setItem("todos",JSON.stringify(this.state.todos))
   };
 
   addTodo = async todo => {
@@ -72,7 +74,6 @@ class App extends Component {
     await this.setState(prevState => ({
       todos: [...prevState.todos, todo]
     }));
-    // console.log(this.state.todos);
     localStorage.setItem("todos",JSON.stringify(this.state.todos))
   };
 
